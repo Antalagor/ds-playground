@@ -1,2 +1,4 @@
 .ipynb_checkpoints
 .idea
+reinforcement/curvytronClientCode/
+__pycache__
