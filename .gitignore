@@ -2,3 +2,4 @@
 .idea
 reinforcement/curvytronClientCode/
 __pycache__
+**/*.ipynb
