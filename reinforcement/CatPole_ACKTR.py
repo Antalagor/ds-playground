@@ -18,13 +18,13 @@ import gym
 
 from stable_baselines.common.policies import MlpPolicy
 from stable_baselines.common.vec_env import SubprocVecEnv
-from stable_baselines import PPO2
+from stable_baselines import ACKTR
 
 # multiprocess environment
 n_cpu = 4
 env = SubprocVecEnv([lambda: gym.make('CartPole-v1') for i in range(n_cpu)])
 
-model = PPO2(MlpPolicy, env, verbose=1)
+model = ACKTR(MlpPolicy, env, verbose=1)
 model.learn(total_timesteps=250000)
 # -
 
