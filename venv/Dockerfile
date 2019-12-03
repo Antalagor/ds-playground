@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM python:3.7
 
 RUN apt-get -y update && \
     apt-get -y install \
@@ -9,18 +9,11 @@ RUN apt-get -y update && \
     libxext6 \
     libxrender-dev
 
-ENV VENV /root/venv
-
-RUN pip3 install virtualenv && \
-    virtualenv $VENV && \
-    . $VENV/bin/activate
-
-ENV PATH=$VENV/bin:$PATH
-
 ADD requirements.txt .
+ADD jupyter_notebook_config.py .
 
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
-CMD jupyter notebook --no-browser --ip=0.0.0.0 --port=8888 --allow-root $MOUNT
+CMD jupyter notebook --no-browser --ip=0.0.0.0 --port=8888 --allow-root --config=jupyter_notebook_config.py $PYTHONPATH
 
 EXPOSE 8888
